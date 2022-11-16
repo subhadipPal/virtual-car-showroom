@@ -46,3 +46,19 @@ export const getFilteredRecords = (appliedFilters?: Record<string, string>, offe
             === `${appliedFilters[filterName]}`.toLowerCase() || !appliedFilters[filterName] )))
     : offers
 }
+
+export const getVehicleDetails = (offerId: string, offers?: OfferRec[]) => {
+  return offers?.find((offerItem) => offerItem.offerID === offerId)
+}
+
+export const getImageItems = (images?: string[]) => {
+  return images?.map( (image, index) => ({ 
+    src: image,
+    original: image,
+    width: 320,
+    height: 174,
+    tags: [
+    ],
+    caption: "",
+   })) || []
+}

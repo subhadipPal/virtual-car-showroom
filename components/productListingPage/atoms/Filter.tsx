@@ -7,6 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Record } from '../../../typings';
 import { getFilteredRecords } from '../../../utils';
 import { OfferDataContext } from '../../../context';
+import { AppContext } from '../../../context/appContext';
 
 interface IFilter {
   title: string,

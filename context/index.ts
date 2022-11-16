@@ -6,7 +6,8 @@ interface IOfferDataContext {
   appliedFilters?: Record<string, string>,
   filteredOffers?: OfferRec[]
   toggleFilteredOffers?: (newOffers?: OfferRec[]) => void
-  updateAppliedFilters?: (newAppliedFilters?: {[key: string]: string} ) => void
+  updateAppliedFilters?: (newAppliedFilters?: Record<string, string> ) => void
+  redirectToPDP?:(vehicleId: string) => void 
 }
 
 export const OfferDataContext = createContext<IOfferDataContext>({})

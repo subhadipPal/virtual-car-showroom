@@ -22,7 +22,7 @@ const useStyles = makeStyles<Theme>(
         borderTop: `1px solid ${theme.palette.grey[400]}`
       },
       cardContent: {
-        position: 'absolute', 
+        position: 'absolute',
         bottom: 0,
         width: '100%',
         height: '70%',
@@ -43,19 +43,19 @@ const OfferTile = ({ record }: { record: Record }) => {
   const theme = useTheme()
   const { tileContent, tileFooter, cardContent, otherDetails } = useStyles()
   return (
-    <Card sx={{ width: '350px', height: '450px'}}>
+    <Card sx={{ width: '350px', height: '450px' }}>
       <CardActionArea className={tileContent}>
         <CardMedia
           component="img"
           image={record.image}
           alt={`${record.make} ${record.model}`}
-          sx={{position: 'absolute', top: 0, maxHeight: 200, overflow: 'visible', backgroundSize: 'contain'}}
+          sx={{ position: 'absolute', top: 0, maxHeight: 200, overflow: 'visible', backgroundSize: 'contain' }}
         />
         <CardContent className={cardContent}>
           <Typography variant="h6">
             {`${record.make} ${record.model}`}
           </Typography>
-          <Typography sx={{ fontSize: 12, fontWeight: 'bold'}}>
+          <Typography sx={{ fontSize: 12, fontWeight: 'bold' }}>
             {record.variant}
           </Typography>
           <div className={otherDetails}>
@@ -82,12 +82,12 @@ const OfferTile = ({ record }: { record: Record }) => {
             </Typography>
           </div>
           <div className={tileFooter}>
-              <Typography variant='h6' sx={{ color: theme.palette.grey[700], width: '80%' }}>
-                from €{record.monthlyInstallment}/month
-              </Typography>
-              <Typography variant='h6' sx={{ color: theme.palette.grey[700] }}>
-                €{record.price}
-              </Typography>
+            <Typography variant='h6' sx={{ color: theme.palette.grey[700], width: '80%' }}>
+              from €{record.monthlyInstallment}/month
+            </Typography>
+            <Typography variant='h6' sx={{ color: theme.palette.grey[700] }}>
+              €{record.price}
+            </Typography>
           </div>
         </CardContent>
       </CardActionArea>

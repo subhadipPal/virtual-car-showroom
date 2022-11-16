@@ -32,7 +32,8 @@ const useStyles = makeStyles<Theme>(
 const PLP = () => {
   const { offerTileContainer } = useStyles()
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-  const { offers: allOffers, filteredOffers } = useContext(OfferDataContext);
+  const { offers: allOffers, filteredOffers, redirectToPDP } = useContext(OfferDataContext);
+
   let updatedOffers = allOffers
   if (filteredOffers) {
     updatedOffers = filteredOffers
@@ -58,7 +59,9 @@ const PLP = () => {
       <div className={offerTileContainer}>
         <SideNav isOpen={isSideNavOpen} toggleSideNav={toggleSideNav}></SideNav>
         {updatedOffers?.map((offerRec) => (
-          <div key={offerRec.offerID} data-testid="card">
+          <div key={offerRec.offerID}
+            data-testid="card"
+            onClick={() => redirectToPDP?.(offerRec.offerID)}>
             <LazyLoad config={{ always: true }}>
               <OfferTile record={offerRec} />
             </LazyLoad>
