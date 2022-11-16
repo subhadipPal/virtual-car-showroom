@@ -21,8 +21,9 @@ export default function HeaderToolbar({toggleSideNav}: IHeaderToolbar) {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={toggleSideNav(true)}
           >
-            <MenuIcon onClick={toggleSideNav(true)}/>
+            <MenuIcon />
           </IconButton>
           <Typography>
             Virtual Car Showroom

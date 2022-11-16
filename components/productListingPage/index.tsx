@@ -12,7 +12,7 @@ const useStyles = makeStyles<Theme>(
   (theme: Theme) =>
     createStyles({
       offerTileContainer: {
-        margin: 'auto 200px',
+        margin: 'auto 100px',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
         padding: '20px 0',
