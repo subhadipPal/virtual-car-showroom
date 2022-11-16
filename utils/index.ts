@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { Record, VehicleData } from '../typings'
+import { Record as OfferRec, VehicleData } from '../typings'
 
 export const filters = [
   'make',
@@ -14,7 +14,7 @@ export const filters = [
   'category'
 ]
 
-export const fetchVehicleData = _.memoize( async (page ?: number) => {
+export const fetchVehicleData = _.memoize(async (page?: number) => {
   const response: Response = await fetch('http://demo9481430.mockable.io/offers')
   const vehicleData: VehicleData = await response.json()
 
@@ -26,15 +26,23 @@ export const getDefaultAppliedFilters = () => {
   return Object.fromEntries(filterArr)
 }
 
-export const getRespectiveFilterValues = (filter: keyof Record, records?: Record[]) => {
+export const getRespectiveFilterValues = (filter: keyof OfferRec, records?: OfferRec[]) => {
   const filterValues = records?.map(item => ({
     [filter]: item[filter]
   })).filter(item => Object.keys(item)[0] === filter)
-  .map(item => item[filter])
+    .map(item => item[filter])
+  const uniqueFilterValues = _.uniq(filterValues)
 
-  return filterValues as string[]
+  return uniqueFilterValues as string[]
 }
 
-export const getFilteredRecords = (filterVal: string, filterKey: keyof Record, offers?: Record[]) => {
-  return offers?.filter((offerItem) => offerItem[filterKey] === filterVal)
+export const getFilteredRecords = (appliedFilters?: Record<string, string>, offers?: OfferRec[]) => {
+  return appliedFilters ?
+    offers?.filter(
+      (offerItem) =>
+        Object.keys(appliedFilters)
+          .every(filterName =>
+            (`${offerItem[filterName as keyof OfferRec]}`.toLowerCase()
+            === `${appliedFilters[filterName]}`.toLowerCase() || !appliedFilters[filterName] )))
+    : offers
 }

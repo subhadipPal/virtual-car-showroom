@@ -21,7 +21,9 @@ interface ISideNav {
 }
 
 export default function SideNav({ isOpen, toggleSideNav }: ISideNav) {
-  const { offers, toggleFilteredOffers } = useContext(OfferDataContext)
+  const { 
+    offers
+  } = useContext(OfferDataContext)
 
 
   return (
@@ -41,8 +43,6 @@ export default function SideNav({ isOpen, toggleSideNav }: ISideNav) {
                 <Filter 
                 title={filter as keyof Record} 
                 values={getRespectiveFilterValues(filter as keyof Record, offers)}
-                offers={offers}
-                handleApplyFilter={toggleFilteredOffers}
                 />
               </ListItem>
             ))}

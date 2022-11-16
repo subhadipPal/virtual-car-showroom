@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,22 +6,39 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Record } from '../../../typings';
 import { getFilteredRecords } from '../../../utils';
+import { OfferDataContext } from '../../../context';
 
 interface IFilter {
-  title: keyof Record,
+  title: string,
   values: string[],
-  offers?: Record[]
-  handleApplyFilter?: (offers?: Record[]) => void
 }
 
-export default function Filter({ title, values, handleApplyFilter, offers}: IFilter) {
-  const [value, setValue] = useState('');
+export default function Filter({ 
+  title, 
+  values
+}: IFilter) {
+  const { 
+    offers, 
+    toggleFilteredOffers, 
+    appliedFilters, 
+    updateAppliedFilters 
+  } = useContext(OfferDataContext)
+
+  const [value, setValue] = useState(appliedFilters?.[title]);
+
+  useEffect(() => {
+    const filteredRecords = getFilteredRecords(appliedFilters, offers)
+    toggleFilteredOffers?.(filteredRecords)
+  }, [appliedFilters, offers, toggleFilteredOffers])
+  
 
   const handleChange = (event: SelectChangeEvent) => {
     const filterVal = event.target.value as string
     setValue(filterVal);
-    const filteredRecords = getFilteredRecords(filterVal, title, offers)
-    handleApplyFilter?.(filteredRecords)
+    updateAppliedFilters?.({
+      ...appliedFilters,
+      [title]: filterVal
+    })
   };
 
   return (

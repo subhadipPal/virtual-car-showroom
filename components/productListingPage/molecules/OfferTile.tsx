@@ -15,7 +15,6 @@ const useStyles = makeStyles<Theme>(
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'row',
-        position: 'absolute',
         bottom: 0,
         width: '90%',
         minHeight: '40px',
@@ -28,14 +27,15 @@ const OfferTile = ({ record }: { record: Record }) => {
   const theme = useTheme()
   const { tileContent, tileFooter } = useStyles()
   return (
-    <Card sx={{ width: '300px', height: '400px'}}>
+    <Card sx={{ width: '350px', height: '450px'}}>
       <CardActionArea className={tileContent}>
         <CardMedia
           component="img"
           image={record.image}
           alt={`${record.make} ${record.model}`}
+          sx={{position: 'absolute', top: 0}}
         />
-        <CardContent>
+        <CardContent sx={{position: 'absolute', bottom: 0}}>
           <Typography gutterBottom variant="h6">
             {`${record.make} ${record.model}`}
           </Typography>

@@ -1,13 +1,11 @@
 import { createContext } from 'react'
-import { OffersData, Record } from '../typings'
+import { Record as OfferRec } from '../typings'
 
 interface IOfferDataContext {
-  offers?: Record[],
-  appliedFilters?: {
-    [key: string]: string
-  },
-  filteredOffers?: Record[]
-  toggleFilteredOffers?: (newOffers?: Record[]) => void
+  offers?: OfferRec[],
+  appliedFilters?: Record<string, string>,
+  filteredOffers?: OfferRec[]
+  toggleFilteredOffers?: (newOffers?: OfferRec[]) => void
   updateAppliedFilters?: (newAppliedFilters?: {[key: string]: string} ) => void
 }
 
