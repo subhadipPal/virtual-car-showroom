@@ -1,7 +1,7 @@
-import { createRef, memo, RefObject, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { memo, useContext, useEffect, useRef, useState } from 'react'
 import OfferTile from './molecules/OfferTile'
 import { makeStyles, createStyles } from '@mui/styles'
-import { Theme } from '@mui/material'
+import { Backdrop, CircularProgress, Theme } from '@mui/material'
 import SideNav from './molecules/SideNav'
 import HeaderToolbar from './molecules/HeaderToolbar'
 import { OfferDataContext } from '../../context'
@@ -43,6 +43,11 @@ const PLP = () => {
   const { offers: allOffers, filteredOffers, redirectToPDP } = useContext(OfferDataContext);
   const [updatedOffers, setUpdatedOffers] = useState(allOffers)
   const [localLoadingState, setLoadingState] = useState(true)
+  const [isLoadingOpen, setIsLoadingOpen] = useState(false)
+
+  const handleToggle = () => {
+    setIsLoadingOpen(!isLoadingOpen)
+  };
   
   useEffect(() => {
     if(filteredOffers){
@@ -93,6 +98,12 @@ const PLP = () => {
   return (
     <div>
       <HeaderToolbar toggleSideNav={toggleSideNav} />
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoadingOpen}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <div>
         <SideNav isOpen={isSideNavOpen} toggleSideNav={toggleSideNav}></SideNav>
         <section className={offerTileContainer}>
@@ -102,7 +113,10 @@ const PLP = () => {
               <div key={offerRec.offerID}
                 data-testid="card"
                 id={offerRec.offerID}
-                onClick={() => redirectToPDP?.(offerRec.offerID)}>
+                onClick={() => {
+                  handleToggle()
+                  redirectToPDP?.(offerRec.offerID)
+                }}>
                 <OfferTile record={offerRec} />
               </div>
             )
