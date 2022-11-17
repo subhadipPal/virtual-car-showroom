@@ -3,7 +3,7 @@ import { getVehicleDetails } from "../../utils"
 import PDPGallery from "./atoms/ImageGallery"
 import VehicleDetails from "./atoms/VehicleDetails"
 import { makeStyles, createStyles } from '@mui/styles'
-import { Theme } from '@mui/material'
+import { Box, Theme } from '@mui/material'
 import { AppContext } from "../../context/appContext"
 import { Record as OfferRec } from "../../typings"
 
@@ -17,13 +17,14 @@ const useStyles = makeStyles<Theme>(
     createStyles({
       pdpContainer: {
         margin: 'auto 100px',
-        display: 'flex',
+        display: 'grid',
         padding: '20px 0',
-        flexDirection: 'column',
+        gridTemplateColumns: '700px 1fr',
         justifyContent: 'center'
       },
       galleryContainer: {
-        height: '500px',
+        height: '70vh',
+        width: '700px',
         overflowY: 'scroll'
       }
     }),
@@ -39,7 +40,9 @@ const PDP = ({offerId, staticVehicleData}: IPDP) => {
       <div className={galleryContainer}>
         <PDPGallery imgSet={vehicleDetails?.images}/>
       </div>
-      <VehicleDetails data={vehicleDetails}/>
+      <Box sx={{ marginLeft: '40px'}}>
+        <VehicleDetails data={vehicleDetails}/>
+      </Box>
     </div>
   )
 }
