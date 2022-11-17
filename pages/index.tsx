@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { OffersData, Record } from '../typings'
-import { fetchVehicleData, getDefaultAppliedFilters } from '../utils'
+import { fetchVehicleData, getDefaultAppliedFilters, getFilteredRecords } from '../utils'
 import ProductListingPage from '../components/productListingPage'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import theme from '../theme'
@@ -8,34 +8,36 @@ import { OfferDataContext } from '../context'
 import { useRouter } from 'next/router'
 import { AppContext } from '../context/appContext'
 
-type AppliedFiltersType = {[key: string]: string} 
+type AppliedFiltersType = { [key: string]: string }
 
-export default function Home({vehicleData}: {vehicleData: OffersData}) {
-  const { getOffersV3Beta: { metadata, records: staticRecords}} = vehicleData
+export default function Home({ vehicleData }: { vehicleData: OffersData }) {
+  const { getOffersV3Beta: { metadata, records: staticRecords } } = vehicleData
 
   const [vehicleOffers, setVehicleOffers] = useState(staticRecords)
-  const [filteredVehicleOffers, setFilteredVehicleOffers] = useState<Record[]| undefined>()
-  const { toggleOffers, toggleAppliedFilters, appliedFilters: appAppliedFilters } = useContext(AppContext)
+  const [filteredVehicleOffers, setFilteredVehicleOffers] = useState<Record[] | undefined>()
+  const { toggleOffers,
+    appliedFilters: appAppliedFilters } = useContext(AppContext)
   let areFiltersUpdated = false
   const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersType | undefined>(getDefaultAppliedFilters())
 
-  if(appAppliedFilters){
+  if (appAppliedFilters) {
     areFiltersUpdated = Object.values(appAppliedFilters).some((filterVal) => !filterVal)
   }
-
   const router = useRouter()
 
   const handleOfferTileClick = useCallback((vehicleId: string) => {
     router.push(`/${vehicleId}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
+
   useEffect(() => {
     toggleOffers?.(vehicleOffers)
-    if(areFiltersUpdated){
+    if (areFiltersUpdated) {
       setAppliedFilters(appAppliedFilters)
+      const filteredRecords = getFilteredRecords(appAppliedFilters, vehicleOffers)
+      setFilteredVehicleOffers(filteredRecords)
     }
-  }, [appAppliedFilters, appliedFilters, areFiltersUpdated, toggleOffers, vehicleOffers])
+  }, [appAppliedFilters, areFiltersUpdated, toggleOffers, vehicleOffers])
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,19 +50,18 @@ export default function Home({vehicleData}: {vehicleData: OffersData}) {
         toggleFilteredOffers: (newOffers?: Record[]) => setFilteredVehicleOffers(newOffers),
         updateAppliedFilters: (newAppliedFilters?: AppliedFiltersType) => {
           setAppliedFilters(newAppliedFilters)
-          toggleAppliedFilters?.(newAppliedFilters)
         }
       }} >
-      <ProductListingPage />
+        <ProductListingPage />
       </OfferDataContext.Provider>
     </ThemeProvider>
   )
 }
 
 export async function getStaticProps() {
-  try{
+  try {
     const vehicleData = await fetchVehicleData()
-    if(!vehicleData){
+    if (!vehicleData) {
       return {
         notFound: true,
       }
@@ -72,7 +73,7 @@ export async function getStaticProps() {
       }
     }
   }
-  catch(err) {
+  catch (err) {
     console.error(err)
     return {
       notFound: true,

@@ -25,6 +25,8 @@ export default function Filter({
     updateAppliedFilters 
   } = useContext(OfferDataContext)
 
+  const { toggleAppliedFilters: toggleAppAppliedFilters } = useContext(AppContext)
+
   const [value, setValue] = useState(appliedFilters?.[title]);
 
   useEffect(() => {
@@ -37,6 +39,10 @@ export default function Filter({
     const filterVal = event.target.value as string
     setValue(filterVal);
     updateAppliedFilters?.({
+      ...appliedFilters,
+      [title]: filterVal
+    })
+    toggleAppAppliedFilters?.({
       ...appliedFilters,
       [title]: filterVal
     })
