@@ -4,7 +4,7 @@ import "react-image-lightbox/style.css";
 import { Image } from "react-grid-gallery";
 
 import { getImageItems } from '../../../utils';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
 interface CustomImage extends Image {
@@ -25,10 +25,16 @@ const PDPGallery = ({imgSet}: IPDPGallery) => {
   const prevIndex = (index + images.length - 1) % images.length;
   const prevImage = images[prevIndex] || currentImage;
 
-  const handleClick = (index: number, item: CustomImage) => setIndex(index);
+  const handleClick = (index: number, item: CustomImage) => {
+    setIndex(index)
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'))
+    }, 100)
+  };
   const handleClose = () => setIndex(-1);
   const handleMovePrev = () => setIndex(prevIndex);
   const handleMoveNext = () => setIndex(nextIndex);
+
 
   return (
     <Box>
@@ -39,7 +45,7 @@ const PDPGallery = ({imgSet}: IPDPGallery) => {
       />
       {!!currentImage && (
         <Lightbox
-          mainSrc={currentImage.original}
+          mainSrc={currentImage.src}
           imageTitle={currentImage.caption}
           mainSrcThumbnail={currentImage.src}
           nextSrc={nextImage.original}

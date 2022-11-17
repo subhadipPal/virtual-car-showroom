@@ -14,7 +14,7 @@ export const filters = [
   'category'
 ]
 
-export const fetchVehicleData = _.memoize(async (page?: number) => {
+export const fetchVehicleData = _.memoize(async () => {
   const response: Response = await fetch('http://demo9481430.mockable.io/offers')
   const vehicleData: VehicleData = await response.json()
 
@@ -57,8 +57,17 @@ export const getImageItems = (images?: string[]) => {
     original: image,
     width: 320,
     height: 174,
-    tags: [
-    ],
     caption: "",
    })) || []
+}
+
+export const generateStaticPathsForOffers = async () => {
+  const vehicleData = await fetchVehicleData();
+  const { getOffersV3Beta: { records: staticRecords } } = vehicleData
+
+  return staticRecords.map(rec => ({
+    params: {
+      offerId: rec.offerID
+    }
+  }))
 }

@@ -1,7 +1,9 @@
 import type { AppProps } from 'next/app'
 import { useEffect, useState } from 'react';
 import { AppContext } from '../context/appContext';
-import { Record as OfferRec} from '../typings';
+import { Record as OfferRec } from '../typings';
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import theme from '../theme'
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -22,13 +24,16 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <AppContext.Provider value={{
-      offers: appOffers,
-      toggleOffers,
-      appliedFilters,
-      toggleAppliedFilters
-    }}>
-      <Component {...pageProps} />
-    </AppContext.Provider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppContext.Provider value={{
+        offers: appOffers,
+        toggleOffers,
+        appliedFilters,
+        toggleAppliedFilters
+      }}>
+        <Component {...pageProps} />
+      </AppContext.Provider>
+    </ThemeProvider>
   )
 }

@@ -1,14 +1,15 @@
 import { useContext } from "react"
-import { OfferDataContext } from "../../context"
 import { getVehicleDetails } from "../../utils"
 import PDPGallery from "./atoms/ImageGallery"
 import VehicleDetails from "./atoms/VehicleDetails"
 import { makeStyles, createStyles } from '@mui/styles'
 import { Theme } from '@mui/material'
 import { AppContext } from "../../context/appContext"
+import { Record as OfferRec } from "../../typings"
 
 interface IPDP {
-  offerId: string
+  offerId: string,
+  staticVehicleData: OfferRec[]
 }
 
 const useStyles = makeStyles<Theme>(
@@ -28,10 +29,11 @@ const useStyles = makeStyles<Theme>(
     }),
 )
 
-const PDP = ({offerId}: IPDP) => {
+const PDP = ({offerId, staticVehicleData}: IPDP) => {
   const { pdpContainer, galleryContainer } = useStyles()
   const { offers } = useContext(AppContext)
-  const vehicleDetails = getVehicleDetails(offerId, offers)
+  const vehicleDetails = getVehicleDetails(offerId, offers? offers: staticVehicleData)
+
   return (
     <div className={pdpContainer}>
       <div className={galleryContainer}>
