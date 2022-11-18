@@ -9,7 +9,7 @@ import { Record as OfferRec } from '../../typings'
 
 interface IPDP {
   offerId: string
-  staticVehicleData: OfferRec[]
+  staticVehicleData?: OfferRec[]
 }
 
 const useStyles = makeStyles<Theme>(() =>
