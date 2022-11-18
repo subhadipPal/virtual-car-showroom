@@ -1,37 +1,38 @@
-import type { AppProps } from 'next/app'
-import { useEffect, useMemo, useState } from 'react'
-import { AppContext } from '../context/appContext'
-import { Record as OfferRec } from '../typings'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import theme from '../theme'
+import type { AppProps } from "next/app";
+import { useEffect, useMemo, useState } from "react";
+import { AppContext } from "../context/appContext";
+import { Record as OfferRec } from "../typings";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "../theme";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side')
+    const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
-      jssStyles?.parentElement?.removeChild(jssStyles)
+      jssStyles?.parentElement?.removeChild(jssStyles);
     }
-  }, [])
-  const [appOffers, setAppOffers] = useState<OfferRec[]>()
-  const [appliedFilters, setAppliedFilters] = useState<Record<string, string>>()
+  }, []);
+  const [appOffers, setAppOffers] = useState<OfferRec[]>();
+  const [appliedFilters, setAppliedFilters] =
+    useState<Record<string, string>>();
 
   const toggleOffers = (offers?: OfferRec[]) => {
-    setAppOffers(offers)
-  }
+    setAppOffers(offers);
+  };
 
   const toggleAppliedFilters = (newAppliedFilters?: Record<string, string>) => {
-    setAppliedFilters(newAppliedFilters)
-  }
+    setAppliedFilters(newAppliedFilters);
+  };
 
   const appContextValue = useMemo(
     () => ({
       offers: appOffers,
       toggleOffers,
       appliedFilters,
-      toggleAppliedFilters
+      toggleAppliedFilters,
     }),
     [appOffers, appliedFilters]
-  )
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -40,5 +41,5 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </AppContext.Provider>
     </ThemeProvider>
-  )
+  );
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { cleanup, render, screen } from '@testing-library/react'
 import PDP from './index'
+// eslint-disable-next-line jest/no-mocks-import
 import * as Offers from '../../__mocks__/mock-vehicle-data.json'
 import { createTheme, Theme, ThemeProvider } from '@mui/material'
 
@@ -11,11 +12,11 @@ jest.mock('react', () => ({
       return {
         auth: {},
         lang: 'en',
-        snackbar: () => { },
-      };
+        snackbar: () => {}
+      }
     }
 
-    const ActualReact = jest.requireActual('react');
+    const ActualReact = jest.requireActual('react')
     return {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       ...ActualReact.useContext(context),
@@ -30,7 +31,6 @@ describe('Tests for PDP', () => {
 
   beforeAll(() => {
     wrapper = (offerId) => {
-      console.log(offerId)
       return render(
         <ThemeProvider theme={THEME}>
           <PDP offerId={offerId} />

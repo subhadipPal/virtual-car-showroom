@@ -22,7 +22,7 @@ const VehicleDetails = ({ data: record }: IVehicleDetails) => {
   return record ? (
     <div data-testid="pdp-vehicle-details">
       <div>
-        <Typography sx={{ fontSize: 40, fontWeight: 'bold' }} >
+        <Typography sx={{ fontSize: 40, fontWeight: 'bold' }}>
           {`${record.make} ${record.model}`}
         </Typography>
       </div>
@@ -34,7 +34,9 @@ const VehicleDetails = ({ data: record }: IVehicleDetails) => {
         <Typography sx={{ fontSize: 20 }}>
           Condition: {record.condition}
         </Typography>
-        <Typography sx={{ fontSize: 20 }} data-testid="pdp-mileage-info" >Mileage: {record.mileage}</Typography>
+        <Typography sx={{ fontSize: 20 }} data-testid="pdp-mileage-info">
+          Mileage: {record.mileage}
+        </Typography>
         <Typography sx={{ fontSize: 20 }}>
           First registration: {record.firstRegistration}
         </Typography>

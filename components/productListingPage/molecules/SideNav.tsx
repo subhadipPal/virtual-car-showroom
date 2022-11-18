@@ -1,22 +1,22 @@
-import { useContext } from 'react'
-import Box from '@mui/material/Box'
-import Drawer from '@mui/material/Drawer'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import Filter from '../atoms/Filter'
-import { filters, getRespectiveFilterValues } from '../../../utils'
-import { OfferDataContext } from '../../../context'
-import { Record } from '../../../typings'
+import { useContext } from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Filter from "../atoms/Filter";
+import { filters, getRespectiveFilterValues } from "../../../utils";
+import { OfferDataContext } from "../../../context";
+import { Record } from "../../../typings";
 
 interface ISideNav {
-  isOpen: boolean
+  isOpen: boolean;
   toggleSideNav: (
     open: boolean
-  ) => (event: React.KeyboardEvent | React.MouseEvent) => void
+  ) => (event: React.KeyboardEvent | React.MouseEvent) => void;
 }
 
 export default function SideNav({ isOpen, toggleSideNav }: ISideNav) {
-  const { offers } = useContext(OfferDataContext)
+  const { offers } = useContext(OfferDataContext);
 
   return (
     <Drawer anchor="left" open={isOpen} onClose={toggleSideNav(false)}>
@@ -36,5 +36,5 @@ export default function SideNav({ isOpen, toggleSideNav }: ISideNav) {
         </List>
       </Box>
     </Drawer>
-  )
+  );
 }

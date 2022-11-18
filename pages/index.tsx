@@ -1,54 +1,54 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { OffersData, Record } from '../typings'
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { OffersData, Record } from "../typings";
 import {
   fetchVehicleData,
   getDefaultAppliedFilters,
-  getFilteredRecords
-} from '../utils'
-import ProductListingPage from '../components/productListingPage'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import theme from '../theme'
-import { OfferDataContext } from '../context'
-import { useRouter } from 'next/router'
-import { AppContext } from '../context/appContext'
+  getFilteredRecords,
+} from "../utils";
+import ProductListingPage from "../components/productListingPage";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "../theme";
+import { OfferDataContext } from "../context";
+import { useRouter } from "next/router";
+import { AppContext } from "../context/appContext";
 
-type AppliedFiltersType = { [key: string]: string }
+type AppliedFiltersType = { [key: string]: string };
 type QueryParams = {
-  model?: string
-  make?: string
-  mileage?: string
-  power?: string
-  firstRegistration?: string
-  fuel?: string
-  price?: string
-  gearbox?: string
-  exteriorColor?: string
-  category?: string
-}
+  model?: string;
+  make?: string;
+  mileage?: string;
+  power?: string;
+  firstRegistration?: string;
+  fuel?: string;
+  price?: string;
+  gearbox?: string;
+  exteriorColor?: string;
+  category?: string;
+};
 
 export default function Home({ vehicleData }: { vehicleData: OffersData }) {
   const {
-    getOffersV3Beta: { records: staticRecords }
-  } = vehicleData
-  const router = useRouter()
+    getOffersV3Beta: { records: staticRecords },
+  } = vehicleData;
+  const router = useRouter();
 
-  const [vehicleOffers] = useState(staticRecords)
+  const [vehicleOffers] = useState(staticRecords);
   const [filteredVehicleOffers, setFilteredVehicleOffers] = useState<
     Record[] | undefined
-  >()
+  >();
   const { toggleOffers, appliedFilters: appAppliedFilters } =
-    useContext(AppContext)
-  let areFiltersUpdated = false
+    useContext(AppContext);
+  let areFiltersUpdated = false;
 
   const [appliedFilters, setAppliedFilters] = useState<
     AppliedFiltersType | undefined
-  >(getDefaultAppliedFilters())
-  const [urlFilterApplied, setUrlFiltersApplied] = useState(false)
+  >(getDefaultAppliedFilters());
+  const [urlFilterApplied, setUrlFiltersApplied] = useState(false);
 
   if (appAppliedFilters) {
     areFiltersUpdated = Object.values(appAppliedFilters).some(
       (filterVal) => !!filterVal
-    )
+    );
   }
   const {
     model,
@@ -60,8 +60,8 @@ export default function Home({ vehicleData }: { vehicleData: OffersData }) {
     price,
     gearbox,
     exteriorColor,
-    category
-  }: QueryParams = router.query
+    category,
+  }: QueryParams = router.query;
 
   const urlFilters = useMemo(
     () => ({
@@ -75,7 +75,7 @@ export default function Home({ vehicleData }: { vehicleData: OffersData }) {
       ...(!!price && { price }),
       ...(!!gearbox && { gearbox }),
       ...(!!exteriorColor && { exteriorColor }),
-      ...(!!category && { category })
+      ...(!!category && { category }),
     }),
     [
       appliedFilters,
@@ -88,38 +88,38 @@ export default function Home({ vehicleData }: { vehicleData: OffersData }) {
       mileage,
       model,
       power,
-      price
+      price,
     ]
-  )
+  );
 
   useEffect(() => {
     const areUrlFiltersApplied = Object.values(urlFilters).some(
       (filterVal) => !!filterVal
-    )
+    );
     if (areUrlFiltersApplied && !urlFilterApplied) {
-      const urlFilteredRecords = getFilteredRecords(urlFilters, vehicleOffers)
-      setFilteredVehicleOffers(urlFilteredRecords)
-      setUrlFiltersApplied(true)
-      setAppliedFilters(urlFilters)
+      const urlFilteredRecords = getFilteredRecords(urlFilters, vehicleOffers);
+      setFilteredVehicleOffers(urlFilteredRecords);
+      setUrlFiltersApplied(true);
+      setAppliedFilters(urlFilters);
     }
-  }, [urlFilterApplied, urlFilters, vehicleOffers])
+  }, [urlFilterApplied, urlFilters, vehicleOffers]);
 
   const handleOfferTileClick = useCallback((vehicleId: string) => {
-    router.push(`/${vehicleId}`)
+    router.push(`/${vehicleId}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   useEffect(() => {
-    toggleOffers?.(vehicleOffers)
+    toggleOffers?.(vehicleOffers);
     if (areFiltersUpdated) {
-      setAppliedFilters(appAppliedFilters)
+      setAppliedFilters(appAppliedFilters);
       const filteredRecords = getFilteredRecords(
         appAppliedFilters,
         vehicleOffers
-      )
-      setFilteredVehicleOffers(filteredRecords)
+      );
+      setFilteredVehicleOffers(filteredRecords);
     }
-  }, [appAppliedFilters, areFiltersUpdated, toggleOffers, vehicleOffers])
+  }, [appAppliedFilters, areFiltersUpdated, toggleOffers, vehicleOffers]);
 
   const offerContextValue = useMemo(
     () => ({
@@ -130,11 +130,11 @@ export default function Home({ vehicleData }: { vehicleData: OffersData }) {
       toggleFilteredOffers: (newOffers?: Record[]) =>
         setFilteredVehicleOffers(newOffers),
       updateAppliedFilters: (newAppliedFilters?: AppliedFiltersType) => {
-        setAppliedFilters(newAppliedFilters)
-      }
+        setAppliedFilters(newAppliedFilters);
+      },
     }),
     [appliedFilters, filteredVehicleOffers, handleOfferTileClick, vehicleOffers]
-  )
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -143,28 +143,28 @@ export default function Home({ vehicleData }: { vehicleData: OffersData }) {
         <ProductListingPage />
       </OfferDataContext.Provider>
     </ThemeProvider>
-  )
+  );
 }
 
 export async function getStaticProps() {
   try {
-    const vehicleData = await fetchVehicleData()
+    const vehicleData = await fetchVehicleData();
     if (!vehicleData) {
       return {
-        notFound: true
-      }
+        notFound: true,
+      };
     }
 
     return {
       props: {
-        vehicleData
-      }
-    }
+        vehicleData,
+      },
+    };
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error(err)
+    console.error(err);
     return {
-      notFound: true
-    }
+      notFound: true,
+    };
   }
 }

@@ -1,14 +1,14 @@
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
 interface IHeaderToolbar {
   toggleSideNav: (
     open: boolean
-  ) => (event: React.KeyboardEvent | React.MouseEvent) => void
+  ) => (event: React.KeyboardEvent | React.MouseEvent) => void;
 }
 
 export default function HeaderToolbar({ toggleSideNav }: IHeaderToolbar) {
@@ -30,5 +30,5 @@ export default function HeaderToolbar({ toggleSideNav }: IHeaderToolbar) {
         </Toolbar>
       </AppBar>
     </Box>
-  )
+  );
 }
