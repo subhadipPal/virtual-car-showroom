@@ -1,0 +1,286 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for PDP should match snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="makeStyles-pdpContainer-1"
+      >
+        <div
+          class="makeStyles-galleryContainer-2"
+        >
+          <div
+            class="MuiBox-root css-0"
+            data-testid="pdp-gallery"
+          >
+            <div
+              class="ReactGridGallery"
+              id="ReactGridGallery"
+            >
+              <object
+                data="about:blank"
+                style="position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; pointer-events: none; z-index: -1; opacity: 0;"
+                tabindex="-1"
+                title=""
+                type="text/html"
+              />
+              <div
+                style="display: flex; flex-wrap: wrap;"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-19t1w01"
+        >
+          <div
+            data-testid="pdp-vehicle-details"
+          >
+            <div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1eomioo-MuiTypography-root"
+              >
+                SEAT Mii
+              </p>
+            </div>
+            <div
+              class="makeStyles-productDetailsContainer-3"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1vbkf5-MuiTypography-root"
+              >
+                Mii Style 1.0 EU6d-T RDC Klima ESP Seitenairb. TRC Airb ABS
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+              >
+                Condition: 
+                USED
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+                data-testid="pdp-mileage-info"
+              >
+                Mileage: 
+                59639
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+              >
+                First registration: 
+                019.01.2
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+              >
+                Fuel: 
+                PETROL
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+              >
+                Power: 
+                44
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+              >
+                Consumption: \`$
+                4.3
+                 $
+                LITER
+                \`
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+              >
+                CO2: 
+                96
+              </p>
+              <h6
+                class="MuiTypography-root MuiTypography-h6 css-1rnrzrm-MuiTypography-root"
+              >
+                from €
+                37
+                /month
+              </h6>
+              <h6
+                class="MuiTypography-root MuiTypography-h6 css-bsuh3b-MuiTypography-root"
+              >
+                €
+                6630
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="makeStyles-pdpContainer-1"
+    >
+      <div
+        class="makeStyles-galleryContainer-2"
+      >
+        <div
+          class="MuiBox-root css-0"
+          data-testid="pdp-gallery"
+        >
+          <div
+            class="ReactGridGallery"
+            id="ReactGridGallery"
+          >
+            <object
+              data="about:blank"
+              style="position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; pointer-events: none; z-index: -1; opacity: 0;"
+              tabindex="-1"
+              title=""
+              type="text/html"
+            />
+            <div
+              style="display: flex; flex-wrap: wrap;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-19t1w01"
+      >
+        <div
+          data-testid="pdp-vehicle-details"
+        >
+          <div>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1eomioo-MuiTypography-root"
+            >
+              SEAT Mii
+            </p>
+          </div>
+          <div
+            class="makeStyles-productDetailsContainer-3"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1vbkf5-MuiTypography-root"
+            >
+              Mii Style 1.0 EU6d-T RDC Klima ESP Seitenairb. TRC Airb ABS
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+            >
+              Condition: 
+              USED
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+              data-testid="pdp-mileage-info"
+            >
+              Mileage: 
+              59639
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+            >
+              First registration: 
+              019.01.2
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+            >
+              Fuel: 
+              PETROL
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+            >
+              Power: 
+              44
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+            >
+              Consumption: \`$
+              4.3
+               $
+              LITER
+              \`
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+            >
+              CO2: 
+              96
+            </p>
+            <h6
+              class="MuiTypography-root MuiTypography-h6 css-1rnrzrm-MuiTypography-root"
+            >
+              from €
+              37
+              /month
+            </h6>
+            <h6
+              class="MuiTypography-root MuiTypography-h6 css-bsuh3b-MuiTypography-root"
+            >
+              €
+              6630
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

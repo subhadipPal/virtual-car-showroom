@@ -31,7 +31,7 @@ const PDPGallery = ({ imgSet }: IPDPGallery) => {
   const handleMoveNext = () => setIndex(nextIndex)
 
   return (
-    <Box>
+    <Box data-testid="pdp-gallery">
       <Gallery
         images={images}
         onClick={handleClick}
