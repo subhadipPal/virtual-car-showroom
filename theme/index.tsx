@@ -11,7 +11,7 @@ declare module '@mui/material/styles' {
 }
 
 export enum SupportedTheme {
-  Default,
+  Default
 }
 
 const palette = {
@@ -30,12 +30,12 @@ const theme = createTheme({
       'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
-      'sans-serif',
+      'sans-serif'
     ].join(','),
     button: {
-      textTransform: 'none',
-    },
-  },
+      textTransform: 'none'
+    }
+  }
 })
 
 theme.components = {
@@ -43,48 +43,48 @@ theme.components = {
   MuiTypography: {
     styleOverrides: {
       gutterBottom: {
-        marginBottom: theme.spacing(3),
+        marginBottom: theme.spacing(3)
       },
       h2: {
-        fontWeight: 400,
+        fontWeight: 400
       },
       h3: {
         fontWeight: 500,
-        fontSize: '1.75rem',
+        fontSize: '1.75rem'
       },
       h4: {
         fontWeight: 700,
-        fontSize: '1.25rem',
+        fontSize: '1.25rem'
       },
       h5: {
         fontSize: '1rem',
-        fontWeight: 700,
-      },
-    },
+        fontWeight: 700
+      }
+    }
   },
   MuiFormControl: {
     styleOverrides: {
       root: {
-        margin: '7px 0 24px 0',
-      },
-    },
+        margin: '7px 0 24px 0'
+      }
+    }
   },
   MuiCssBaseline: {
     styleOverrides: {
       '@global': {
         html: {
-          touchAction: 'manipulation',
+          touchAction: 'manipulation'
         },
         body: {
           backgroundColor: '#fff',
-          fontSize: '0.875rem',
+          fontSize: '0.875rem'
         },
         a: {
-          color: 'rgb(22, 82, 151)',
-        },
-      },
-    },
-  },
+          color: 'rgb(22, 82, 151)'
+        }
+      }
+    }
+  }
 } as typeof theme.components
 
 export default theme
